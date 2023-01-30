@@ -7,6 +7,8 @@ import {
   Inter_800ExtraBold
 } from '@expo-google-fonts/inter';
 
+import './src/libs/dayjs';
+
 import { Loading } from './src/components/Loading';
 import { Home } from './src/screens/Home';
 
