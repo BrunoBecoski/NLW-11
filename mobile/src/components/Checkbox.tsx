@@ -1,18 +1,19 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import colors from 'tailwindcss/colors';
 
-interface CheckboxProps {
+interface CheckboxProps extends TouchableOpacityProps {
   title: string;
   checked?: boolean;
 }
 
-export function Checkbox({ title, checked = false }: CheckboxProps) {
+export function Checkbox({ title, checked = false, ...rest }: CheckboxProps) {
 
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       className="flex-row mb-2 items-center"
+      {...rest}
     >
       {
         checked ?
