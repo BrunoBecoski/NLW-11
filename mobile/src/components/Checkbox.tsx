@@ -8,7 +8,6 @@ interface CheckboxProps extends TouchableOpacityProps {
 }
 
 export function Checkbox({ title, checked = false, ...rest }: CheckboxProps) {
-
   return (
     <TouchableOpacity
       activeOpacity={0.7}

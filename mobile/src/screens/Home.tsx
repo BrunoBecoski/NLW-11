@@ -1,18 +1,21 @@
 import { ScrollView, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { generateRangeBetweenDates } from '../utils/generate-range-between-dates';
 
 import { Header } from '../components/Header';
 import { HabitDay, daySize } from '../components/HabitDay';
 
-const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
+const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
-const datesFormYearStart = generateRangeBetweenDates()
+const datesFormYearStart = generateRangeBetweenDates();
 
-const minimumSummaryDatesSizes = 18 * 7 // 18 weeks
-const amountOfDaysToFill = minimumSummaryDatesSizes - datesFormYearStart.length
+const minimumSummaryDatesSizes = 18 * 7; // 18 weeks
+const amountOfDaysToFill = minimumSummaryDatesSizes - datesFormYearStart.length;
 
 export function Home() {
+  const { navigate } = useNavigation();
+
   return (
     <View className="flex-1 bg-background px-8 pt-16">
       <Header />
@@ -39,6 +42,7 @@ export function Home() {
           {
             datesFormYearStart.map(date => (
               <HabitDay
+                onPress={() => navigate('habit', { date: date.toISOString() })}
                 key={date.toString()}
               />
             ))
