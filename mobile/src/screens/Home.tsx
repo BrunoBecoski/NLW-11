@@ -1,20 +1,41 @@
-import { ScrollView, Text, View } from 'react-native';
+import { Alert, ScrollView, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import { api } from '../lib/axios';
 import { generateRangeBetweenDates } from '../utils/generate-range-between-dates';
 
 import { Header } from '../components/Header';
 import { HabitDay, daySize } from '../components/HabitDay';
+import { useEffect, useState } from 'react';
 
-const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
 
-const datesFormYearStart = generateRangeBetweenDates();
+const datesFormYearStart = generateRangeBetweenDates()
 
-const minimumSummaryDatesSizes = 18 * 7; // 18 weeks
-const amountOfDaysToFill = minimumSummaryDatesSizes - datesFormYearStart.length;
+const minimumSummaryDatesSizes = 18 * 7 // 18 weeks
+const amountOfDaysToFill = minimumSummaryDatesSizes - datesFormYearStart.length
 
 export function Home() {
-  const { navigate } = useNavigation();
+  const [loading, setLoading] = useState(true)
+  const [summary, setSummary] = useState(null)
+  const { navigate } = useNavigation()
+
+  async function fecthData() {
+    try {
+      setLoading(true)
+      const response = await api.get('/summary')
+      setSummary(response.data)
+    } catch (error) {
+      Alert.alert('Ops', 'Não foi possível carregar o sumarário de hábitos')
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fecthData()
+  }, []) 
 
   return (
     <View className="flex-1 bg-background px-8 pt-16">
