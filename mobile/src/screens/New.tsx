@@ -3,6 +3,8 @@ import { Alert, ScrollView, Text, TextInput, TouchableOpacity, View } from 'reac
 import { Feather } from '@expo/vector-icons';
 import colors from 'tailwindcss/colors';
 
+import { api } from '../lib/axios';
+
 import { BackButton } from '../components/BackButton';
 import { Checkbox } from '../components/Checkbox';
 
@@ -21,10 +23,17 @@ export function New() {
   }
   
   async function handleCreateNewHabit() {
-    try {
+    try { 
       if(!title.trim() || weekDays.length === 0) {
         Alert.alert('Novo Hábito', 'Informe o nome do hábito e escolha a periodicidade')
       }
+
+      await api.post('/habits', { title, weekDays })
+
+      setTitle('')
+      setWeekDays([])
+
+      Alert.alert('Novo hábito', 'Hábito criado com sucesso!')
     } catch (error) {
       console.log(error)
       Alert.alert('Ops', 'Não foi possível criar o novo hábito')
