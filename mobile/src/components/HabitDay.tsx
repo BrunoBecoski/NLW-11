@@ -6,9 +6,13 @@ const screenHorizontalPadding = (32 * 2) / 5
 export const dayMarginBetween = 8
 export const daySize = (Dimensions.get('screen').width / weekDays) - (screenHorizontalPadding + 5)
 
-interface HabitDayProps extends TouchableOpacityProps {}
+interface HabitDayProps extends TouchableOpacityProps {
+  date: Date;
+  completed?: number
+  amount?: number
+}
 
-export function HabitDay({ ...rest }: HabitDayProps) {
+export function HabitDay({ completed = 0, amount = 0, date, ...rest }: HabitDayProps) {
   return (
     <TouchableOpacity
       className="bg-zinc-900 rounded-lg border-2 m-1 border-zinc-800"
