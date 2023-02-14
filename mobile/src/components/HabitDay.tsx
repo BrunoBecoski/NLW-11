@@ -1,4 +1,6 @@
-import { Dimensions, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { Dimensions, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+
+import { generateProgressPercentage } from '../utils/generate-progress-percentage';
 
 const weekDays = 7
 const screenHorizontalPadding = (32 * 2) / 5
@@ -8,11 +10,13 @@ export const daySize = (Dimensions.get('screen').width / weekDays) - (screenHori
 
 interface HabitDayProps extends TouchableOpacityProps {
   date: Date;
-  completed?: number
-  amount?: number
+  amount?: number;
+  completed?: number;
 }
 
 export function HabitDay({ completed = 0, amount = 0, date, ...rest }: HabitDayProps) {
+  const amountAccomplishedPercentage = amount > 0 ? generateProgressPercentage(amount, completed) : 0
+
   return (
     <TouchableOpacity
       className="bg-zinc-900 rounded-lg border-2 m-1 border-zinc-800"
