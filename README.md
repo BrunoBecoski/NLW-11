@@ -31,7 +31,7 @@
 - [Prisma](https://www.prisma.io)
 - [SQLite](https://www.sqlite.org)
   
-### 🖼️ Layout
+### 🖼️ ERD (Entity Relationship Diagram)
 <img src=".github/server.png" />  
 
 <br />
