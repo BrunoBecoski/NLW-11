@@ -4,6 +4,10 @@
 
 <br />
 
+<p align="center"><strong>habits</strong> é um aplicativo para ajudar a gerenciar suas tarefas diárias</p>
+
+<br />
+
 <div align="center">
   <a href="#server">Server</a>
   &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
